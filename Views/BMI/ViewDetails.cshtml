@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FitnessApp.Models.Foodplan>
+
+
+@{
+    ViewBag.Title = "ViewDetails";
+}
+<br>
+<br>
+<br>
+<br>
+
+<h2>@ViewData["Display"]</h2>
+
+<style>
+    th {
+        font-size: 25px;
+    }
+
+    td {
+        font-size: 22px;
+        color: black;
+    }
+</style>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dietplan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Workoutplan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Healthyrecipes)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="table-primary">
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @{int dietcount = item.Dietplan.Split(']').Length;
+                }
+                @for (int i = 0; i < dietcount; i++)
+                {
+                    @Html.DisplayFor(modelItem => item.Dietplan.Split(']')[i])
+                    <br>
+
+                }
+            </td>
+            <td>
+                @{int workcount = item.Workoutplan.Split(']').Length;
+                }
+                @for (int i = 0; i < workcount; i++)
+                {
+                    @Html.DisplayFor(modelItem => item.Workoutplan.Split(']')[i])
+                    <br>
+                }
+            </td>
+            <td>
+                @{int healthycount = item.Healthyrecipes.Split(']').Length;
+                }
+                @for (int i = 0; i < healthycount; i++)
+                {
+                    @Html.DisplayFor(modelItem => item.Healthyrecipes.Split(']')[i])
+                    <br>
+                }
+            </td>
+
+        </tr>
+    }
+
+</table>
